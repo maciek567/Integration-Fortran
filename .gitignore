@@ -1,3 +1,4 @@
 zadanie2.pdf
-src/*.out
-src/*.mod
+src/fft_noise
+res/charts.ods
+fft_inverse.txt
