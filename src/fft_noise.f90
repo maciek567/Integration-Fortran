@@ -62,6 +62,24 @@ program main
     end do
 
 
+    ! remove noise from voice signal
+    do i=1, N/2+1
+        if(abs(output(i)) < 50) output(i) = 0.0
+        write(5,*) i, abs(output(i))
+    end do
+
+
+    ! perform inverse FFT
+    plan_inverse = fftw_plan_dft_c2r_1d(size(input), output, input, FFTW_ESTIMATE+FFTW_UNALIGNED)
+    call fftw_execute_dft_c2r(plan_inverse, output, input)
+
+    time = 0.0
+    do i=1, N
+        time = time + difference
+        write(6,*) input(i) / N
+    end do
+
+
     ! clean up
     call fftw_destroy_plan(plan_fft)
     call fftw_destroy_plan(plan_inverse)
