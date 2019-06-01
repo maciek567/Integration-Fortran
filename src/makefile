@@ -1,11 +1,18 @@
-SOURCE=fft_noise
+SINE=sines_sum
+NOISE=fft_noise
+FLAGS=-Ldirectory -lfftw3 -check bounds -std08 -implicitnone
 
-all: fft run
+all: sine run_sine noise run_noise
 
-fft:
-	ifort $(SOURCE).f90 -o $(SOURCE) -Ldirectory -lfftw3
-run:
-	./$(SOURCE)
+sine:
+	ifort $(SINE).f90 -o $(SINE) $(FLAGS)
+run_sine:
+	./$(SINE)
+
+noise:
+	ifort $(NOISE).f90 -o $(NOISE) $(FLAGS)
+run_noise:
+	./$(NOISE)
 clean:
-	rm -rf $(SOURCE)
+	rm -rf $(SINE) $(NOISE)
 
