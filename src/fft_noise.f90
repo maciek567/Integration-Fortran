@@ -64,7 +64,7 @@ program main
     ! remove noise from voice signal
     do i=1, N/2+1
         if(abs(output(i)) < 50) output(i) = 0.0
-        write(5,*) i, abs(output(i))
+        write(5,*) abs(output(i))
     end do
 
 
