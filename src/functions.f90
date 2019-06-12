@@ -25,4 +25,12 @@ contains
         y = sin(x)
     end function
 
+    function my_pol(x, p) result(y)
+        implicit none
+        real(kind=8), intent(in) :: x
+        integer :: p  ! polynomial degree
+        real(kind=8) :: y
+        y = x ** p
+    end function
+
 end module
