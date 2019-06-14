@@ -1,7 +1,6 @@
 program main
     use functions
     use integration
-    use legendre_polynomial
     implicit none
     integer :: p  ! polynomial degree
     real(kind=8) :: a = 0.0  ! integration interval
@@ -29,7 +28,7 @@ program main
     write(*,*) "sin(x):"
     write(*,*) "real value:    1.839072"
     write(*,*) "rectangular:", r, "difference:", abs(r-1.839072)
-    write(*,*) "trapezoidal:", t, "difference:", abs(r-1.839072)
+    write(*,*) "trapezoidal:", t, "difference:", abs(t-1.839072)
     write(*,*)
 
     true_values = [5D1, 3.33333333D2, 2.500D3, 2D4, 1.66667D5, 1.428571D6, 1.25D7, 1.11111111D8, 1D9, 9.090909091D9]
@@ -39,7 +38,7 @@ program main
         write(*,*) "W(x)=x^", p
         write(*,*) "real value:", true_values(p)
         write(*,*) "rectangular: ", r, "difference:", abs(r-true_values(p))
-        write(*,*) "trapezoidal: ", t, "difference:", abs(r-true_values(p))
+        write(*,*) "trapezoidal: ", t, "difference:", abs(t-true_values(p))
         write(*,*)
     end do
 

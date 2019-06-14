@@ -14,7 +14,7 @@ module integration
 
 contains
 
-    function rectangular_integration(ibeg, iend, myfun, p) result(value)
+function rectangular_integration(ibeg, iend, myfun, p) result(value)
         implicit none
         real(kind=8), intent(in) :: ibeg  ! beginning of integration interval
         real(kind=8), intent(in) :: iend  ! ending of integration interval
@@ -76,7 +76,7 @@ contains
                 value = value + value[i]
             end do
         endif
-    end function
+end function
 
     recursive function legendre(k, x)
         implicit none
