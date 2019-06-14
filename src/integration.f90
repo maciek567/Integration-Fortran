@@ -1,7 +1,6 @@
 module integration
     implicit none
 
-
     interface
         function integrate(ibeg, iend, myfun, p) result(value)
             implicit none
@@ -15,7 +14,7 @@ module integration
 
 contains
 
-    function rectangular_integration(ibeg, iend, myfun, p) result(value)
+  function rectangular_integration(ibeg, iend, myfun, p) result(value)
         implicit none
         real(kind=8), intent(in) :: ibeg  ! beginning of integration interval
         real(kind=8), intent(in) :: iend  ! ending of integration interval
@@ -33,7 +32,7 @@ contains
             ! write(*,*) value
             value = value + myfun(x+diff/2.0, p) * diff
         end do
-    end function
+end function
 
     function trapezoidal_integration(ibeg, iend, myfun, p) result(value)
         implicit none
@@ -53,6 +52,21 @@ contains
             ! write(*,*) value
             value = value + (myfun(x, p) + myfun(x+diff, p)) * (diff/2.0)
         end do
+    end function
+
+    recursive function legendre(k, x)
+        implicit none
+        integer :: k
+        real(kind=8), intent(in) :: x
+        real(kind=8) legendre
+
+        if (k .EQ. 0) then
+            legendre = 1
+        else if (k .EQ. 1) then
+            legendre = x
+        else
+            legendre = ((2*k - 1) / k) * x * legendre(k-1, x) - ((k-1) / k) * legendre(k-2, x)
+        end if
     end function
 
 end module

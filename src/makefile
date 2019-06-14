@@ -4,7 +4,7 @@ FLAGS= -check bounds -implicitnone
 all: compile run
 
 compile:
-	ifort functions.f90 integration.f90 $(NAME).f90 -o $(NAME) $(FLAGS)
+	ifort functions.f90 integration.f90 legendre_polynomial.f90 $(NAME).f90 -o $(NAME) $(FLAGS)
 run:
 	./$(NAME)
 
