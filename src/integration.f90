@@ -14,25 +14,37 @@ module integration
 
 contains
 
-  function rectangular_integration(ibeg, iend, myfun, p) result(value)
+    function rectangular_integration(ibeg, iend, myfun, p) result(value)
         implicit none
         real(kind=8), intent(in) :: ibeg  ! beginning of integration interval
         real(kind=8), intent(in) :: iend  ! ending of integration interval
         real(kind=8), external :: myfun  ! function to be integrated
         integer(kind=4), intent(in) :: p  ! polynomial order
-        real(kind=8) :: value  ! result of integration
+        real(kind=8), codimension[*] :: value  ! result of integration
         real(kind=8) :: diff  ! height of a single trapezoid
         real(kind=8) :: x  ! loop iterator
         integer :: k  ! divide area to k trapezoids
+        integer :: i, istart, istop  ! coarrays
 
         value = 0.0
         k = 1000
         diff = (iend - ibeg) / k
-        do x=ibeg, iend-diff, diff
+        istart= ibeg + (this_image() - 1) * ((iend - ibeg) / num_images()) + 1
+        istop = ibeg + (this_image() * ((iend - ibeg) / num_images()))
+
+        do x=istart, istop-diff, diff
             ! write(*,*) value
             value = value + myfun(x+diff/2.0, p) * diff
         end do
-end function
+
+        syncall()
+
+        if(this_image() == 1) then
+            do i=1, num_images()
+                value = value + value[i]
+            end do
+        endif
+    end function
 
     function trapezoidal_integration(ibeg, iend, myfun, p) result(value)
         implicit none
@@ -40,18 +52,30 @@ end function
         real(kind=8), intent(in) :: iend  ! ending of integration interval
         real(kind=8), external :: myfun  ! function to be integrated
         integer(kind=4), intent(in) :: p  ! polynomial order
-        real(kind=8) :: value  ! result of integration
+        real(kind=8), codimension[*]  :: value  ! result of integration
         real(kind=8) :: diff  ! height of a single trapezoid
         real(kind=8) :: x  ! loop iterator
         integer :: k  ! divide area to k trapezoids
+        integer :: i, istart, istop  ! coarrays
 
         value = 0.0
         k = 1000
         diff = (iend - ibeg) / k
-        do x=ibeg, iend-diff, diff
+        istart= ibeg + (this_image() - 1) * ((iend - ibeg) / num_images()) + 1
+        istop = ibeg + (this_image() * ((iend - ibeg) / num_images()))
+
+        do x=istart, istop-diff, diff
             ! write(*,*) value
             value = value + (myfun(x, p) + myfun(x+diff, p)) * (diff/2.0)
         end do
+
+        syncall()
+
+        if(this_image() == 1) then
+            do i=1, num_images()
+                value = value + value[i]
+            end do
+        endif
     end function
 
     recursive function legendre(k, x)

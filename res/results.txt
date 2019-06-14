@@ -1,0 +1,61 @@
+ Interval: a =  0.000000000000000E+000  and b =   10.0000000000000     
+ 
+ exp(x):
+ real value:    22025.465795
+ rectangular:   22025.3740222970      difference:  9.082145299180411E-002
+ trapezoidal:   22025.6493400459      difference:  0.184496295867575     
+ 
+ sin(x):
+ real value:    1.839072
+ rectangular:   1.83907919189694      difference:  7.202837490893899E-006
+ trapezoidal:   1.83905620345493      difference:  7.202837490893899E-006
+ 
+ W(x)=x^1
+ real value:   50.0000000000000     
+ rectangular:    49.9999999999993      difference:  6.750155989720952E-013
+ trapezoidal:    49.9999999999993      difference:  6.750155989720952E-013
+ 
+ W(x)=x^2
+ real value:   333.333333000000     
+ rectangular:    333.333249999990      difference:  8.300000962435661E-005
+ trapezoidal:    333.333499999990      difference:  8.300000962435661E-005
+ 
+ W(x)=x^3
+ real value:   2500.00000000000     
+ rectangular:    2499.99874999988      difference:  1.250000115305738E-003
+ trapezoidal:    2500.00249999988      difference:  1.250000115305738E-003
+ 
+ W(x)=x^4
+ real value:   20000.0000000000     
+ rectangular:    19999.9833333350      difference:  1.666666500022984E-002
+ trapezoidal:    20000.0333333287      difference:  1.666666500022984E-002
+ 
+ W(x)=x^5
+ real value:   166667.000000000     
+ rectangular:    166666.458333393      difference:  0.541666607052321     
+ trapezoidal:    166667.083333237      difference:  0.541666607052321     
+ 
+ W(x)=x^6
+ real value:   1428571.00000000     
+ rectangular:    1428568.92857275      difference:   2.07142725144513     
+ trapezoidal:    1428576.42856962      difference:   2.07142725144513     
+ 
+ W(x)=x^7
+ real value:   12500000.0000000     
+ rectangular:    12499970.8333574      difference:   29.1666425578296     
+ trapezoidal:    12500058.3333027      difference:   29.1666425578296     
+ 
+ W(x)=x^8
+ real value:   111111111.000000     
+ rectangular:    111110777.778172      difference:   333.221828326583     
+ trapezoidal:    111111777.777297      difference:   333.221828326583     
+ 
+ W(x)=x^9
+ real value:   1000000000.00000     
+ rectangular:    999996250.005978      difference:   3749.99402153492     
+ trapezoidal:    1000007499.99285      difference:   3749.99402153492     
+ 
+ W(x)=x^10
+ real value:   9090909091.00000     
+ rectangular:    9090867424.32844      difference:   41666.6715641022     
+ trapezoidal:    9090992424.14093      difference:   41666.6715641022   

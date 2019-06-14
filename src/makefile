@@ -1,5 +1,5 @@
 NAME=main
-FLAGS= -check bounds -implicitnone
+FLAGS= -check bounds -implicitnone -coarray
 
 all: compile run
 
